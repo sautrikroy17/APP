@@ -9,7 +9,7 @@ class reverse{
             r=i%10;
             c=c*10+r;
     }
-    System.out.println("Reversed Number= "+c);
+    System.out.println("Reversed Number = "+c);
     sc.close();
 }
 }
