@@ -13,6 +13,22 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
     public void displayCourse() {
         System.out.println("Course Code: " + courseCode);
         System.out.println("Course Name: " + courseName);

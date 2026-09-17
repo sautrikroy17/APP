@@ -13,10 +13,26 @@ public class Student {
         this.year = year;
     }
 
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
     public void displayStudent() {
         System.out.println("Student ID: " + studentId);
         System.out.println("Name: " + name);
         System.out.println("Department: " + department);
-        System.out.println("Year of Study: " + year);
+        System.out.println("Academic Year: " + year);
     }
 }
