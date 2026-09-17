@@ -1,7 +1,7 @@
 import doctor.Doctor;
 import patient.Patient;
 
-public class Main {
+public class HospitalManagement {
     public static void main(String[] args) {
         Doctor doc1 = new Doctor("DOC101", "Dr. Rajesh Sharma", "Cardiology", 800.0);
         Doctor doc2 = new Doctor("DOC102", "Dr. Priya Nair", "Dermatology", 600.0);
