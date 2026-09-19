@@ -18,11 +18,3 @@ Course: **21CSC203P-A1-APP** (*Advanced Programming Practice*).
 
 ---
 
-## 🚀 Compiling and Running
-Each week folder contains standalone, self-contained Java source files. To compile and run any solution:
-
-```bash
-cd week-X
-javac <ProgramName>.java
-java <ProgramName>
-```
