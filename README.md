@@ -1,14 +1,14 @@
-# Week 8
+# Week 9
 
-Java lab exercises for Week 8 covering multithreading priorities and Java Swing GUI components.
+Java lab exercises for Week 9 covering Java Swing MVC architecture and JDBC MySQL database operations.
 
 ### Programs:
-- `HospitalEmergencyMonitoring.java`: Multithreaded patient monitoring with thread priority hierarchy (`MAX_PRIORITY`, `NORM_PRIORITY`, `MIN_PRIORITY`).
-- `FoodDeliverySystem.java`: Concurrent order fulfillment, tracking, and notification threads using `setPriority()`.
-- `StudentRegistrationSystem.java`: Java Swing student registration form using `JFrame`, `JTextField`, `JRadioButton`, and `JComboBox`.
-- `UserLoginSystem.java`: Swing authentication interface with `JPasswordField` and user preference check boxes.
-- `CourseManagementSystem.java`: Course registration management with `JList`, `JTable`, and `JScrollPane`.
-- `TextEditor.java`: GUI text editor with `JTextArea`, `JScrollPane`, and file/edit `JMenuBar`.
+- `StudentGradeCalculator.java`: Student grade calculator using Swing MVC architecture (Model, View, Controller).
+- `VehicleServiceEstimator.java`: Automobile service cost estimator with Swing components and MVC pattern.
+- `EmployeePortal.java`: Employee management portal with login authentication, JMenuBar, and MVC design.
+- `BookJDBC.java`: Library book database management with MySQL JDBC (`DriverManager`, `PreparedStatement`, `ResultSet`).
+- `ProductJDBC.java`: Store inventory management using JDBC with product search, updates, and low stock tracking.
+- `CourseRegistrationJDBC.java`: Student course registration queries using parameterized JDBC PreparedStatement.
 
 ### How to Run:
 ```bash
