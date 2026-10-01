@@ -9,9 +9,3 @@ Java lab exercises for Week 8 covering multithreading priorities and Java Swing 
 - `UserLoginSystem.java`: Swing authentication interface with `JPasswordField` and user preference check boxes.
 - `CourseManagementSystem.java`: Course registration management with `JList`, `JTable`, and `JScrollPane`.
 - `TextEditor.java`: GUI text editor with `JTextArea`, `JScrollPane`, and file/edit `JMenuBar`.
-
-### How to Run:
-```bash
-javac <filename>.java
-java <classname>
-```
