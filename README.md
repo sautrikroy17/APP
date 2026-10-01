@@ -15,6 +15,7 @@ Course: **21CSC203P-A1-APP** (*Advanced Programming Practice*).
 | [`week-5/`](./week-5/) | Encapsulation, Banking & Payment systems |
 | [`week-6/`](./week-6/) | Inheritance, package design & security architectures |
 | [`week-7/`](./week-7/) | Multithreading, Concurrency & Online exam systems |
+| [`week-8/`](./week-8/) | Thread priorities & Java Swing GUI components |
+| [`week-9/`](./week-9/) | Java Swing MVC architecture & MySQL JDBC operations |
 
 ---
-
