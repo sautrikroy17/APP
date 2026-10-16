@@ -17,5 +17,6 @@ Course: **21CSC203P-A1-APP** (*Advanced Programming Practice*).
 | [`week-7/`](./week-7/) | Multithreading, Concurrency & Online exam systems |
 | [`week-8/`](./week-8/) | Thread priorities & Java Swing GUI components |
 | [`week-9/`](./week-9/) | Java Swing MVC architecture & MySQL JDBC operations |
+| [`week-10/`](./week-10/) | Functional Programming (map/filter/reduce) & Logic Programming (Facts/Rules/Queries) |
 
 ---
