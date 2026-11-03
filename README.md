@@ -1,114 +1,128 @@
-# Week 10: Functional Programming & Logic Programming
+# Week 11: Network Socket Programming, Symbolic Mathematics & Automata Theory
 
 **Course:** `21CSC203P - Advanced Programming Practice`  
-**Tutorial Date:** 15-10-2026  
+**Tutorial Date:** 03-11-2026  
 **Department:** Computer Science and Engineering  
 
 ---
 
 ## 📂 Overview
 
-This directory contains pure, verified solutions for **Tutorial 10** covering:
-1. **Functional Programming Paradigms:** Higher-order functions (`filter()`, `map()`, `reduce()`), pure functions, lambda expressions, and collection immutability.
-2. **Logic & Declarative Programming Paradigms:** Knowledge base representation using logical facts, inference rules, and deductive queries in Prolog, Python, and Java.
+This directory contains pure, verified solutions for **Tutorial 11** covering:
+1. **Network Socket Programming:** Reliable connection-oriented TCP client–server communication for student record lookup and lightweight connectionless UDP datagram streaming for real-time weather sensor telemetry.
+2. **Symbolic Mathematics & Calculus:** Algebraic expansion, factorization, rational simplification, quadratic equation solving, symbolic differentiation, and definite integration using SymPy and analytical Java kinematics engines.
+3. **Formal Languages & Automata Theory:** Deterministic Finite Automata (DFA) access code validation and Non-deterministic Finite Automata (NFA) substring recognition using the Automata library and pure Java state automata engines.
 
 ---
 
 ## 📑 Program Summary
 
-| Problem | Java Implementation | Python Implementation | Prolog Knowledge Base | Core Topic |
-| :--- | :--- | :--- | :--- | :--- |
-| **Q1. Student Marks Processing** | `StudentMarksFP.java` | `student_marks_fp.py` | — | `filter()`, `map()`, `reduce()`, Lambdas |
-| **Q2. Employee Salary Revision** | `SalaryRevisionFP.java` | `salary_revision_fp.py` | — | Threshold filtering, salary mapping & total reduction |
-| **Q3. E-Commerce Festival Discount** | `EcommerceDiscountFP.java` | `ecommerce_discount_fp.py` | — | Pure functions, non-destructive discounts & immutability |
-| **Q4. Smart Electricity Meter** | `ElectricityMeterFP.java` | `electricity_meter_fp.py` | — | Daily tariff mapping, threshold filtering & pure billing |
-| **Q5. University Course Registration** | `CourseEligibilityLogic.java` | `course_eligibility.py` | `course_eligibility.pl` | Logical facts, conjunction rules & student queries |
-| **Q6. Employee Promotion System** | `PromotionEligibilityLogic.java` | `promotion_eligibility.py` | `promotion_eligibility.pl` | Multi-criteria qualification rules & candidate retrieval |
-| **Q7. Mall Parking Allocation** | `ParkingAllocationLogic.java` | `parking_allocation.py` | `parking_allocation.pl` | Slot availability predicates & vehicle matching rules |
+| Problem | Java Implementation | Python Implementation | Core Topic |
+| :--- | :--- | :--- | :--- |
+| **Q1. Student Result Query** | `StudentResultTCP.java`<br>`StudentResultTCPServer.java`<br>`StudentResultTCPClient.java` | `student_result_tcp.py`<br>`student_tcp_server.py`<br>`student_tcp_client.py` | TCP Sockets (`ServerSocket`, `Socket`, bidirectional stream) |
+| **Q2. Weather Monitoring Station** | `WeatherMonitoringUDP.java`<br>`WeatherUDPServer.java`<br>`WeatherUDPClient.java` | `weather_monitoring_udp.py`<br>`weather_udp_server.py`<br>`weather_udp_client.py` | UDP Datagrams (`DatagramSocket`, `DatagramPacket`, telemetry) |
+| **Q3. Production Cost Algebra** | `ProductionCostAlgebra.java` | `production_cost_algebra.py` | SymPy algebra (`expand`, `factor`, `simplify`, `solve`) |
+| **Q4. Vehicle Motion Kinematics** | `VehicleKinematics.java` | `vehicle_kinematics.py` | SymPy calculus (`diff`, `integrate`, stationary points) |
+| **Q5. Binary Access Code Validator** | `BinaryAccessCodeDFA.java` | `binary_access_code_dfa.py` | DFA (`automata-lib`, states ending in `"01"`) |
+| **Q6. Substring Pattern Recognizer** | `SubstringNFA.java` | `substring_ab_nfa.py` | NFA (`automata-lib`, substring `"ab"` containment) |
 
 ---
 
 ## 📝 Detailed Question Solutions & Concept Explanations
 
-### Question 1: Student Marks Processing
-- **1a (Filter):** Filters students achieving 50 or higher (`filter(lambda s: s[1] >= 50)`).
-- **1b (Map):** Awards 5 grace marks capping at 100 (`map(lambda s: (s[0], min(100, s[1] + 5)))`).
-- **1c (Reduce):** Sums marks across the student list via `reduce(lambda acc, s: acc + s[1], students, 0)`.
-- **1d (Lambda Explanation):** Lambda functions provide lightweight, anonymous inline function definitions. They eliminate the syntactic overhead of declaring standalone helper functions with `def`, enabling functional higher-order primitives (`map`, `filter`, `reduce`) to accept dynamic behavior directly at the call site while preserving code locality.
+### Question 1: Student Information System (TCP Client–Server)
+- **Problem Statement:** A central examination server stores student results. A client transmits a student's registration number over TCP, and the server queries its database to return examination results and GPA.
+- **Architectural Workflow:**
+  1. **TCP Handshake:** Establishes a reliable, ordered, full-duplex byte stream via TCP 3-way handshake (`SYN`, `SYN-ACK`, `ACK`).
+  2. **Client Request:** Client transmits ASCII registration numbers (e.g. `RA2311003010001`).
+  3. **Server Lookup:** Server parses the request, performs an $O(1)$ lookup in the student database, and formats the student profile (Name, Department, GPA, Result Status, Subject Grades).
+  4. **Response Delivery:** Server streams the formatted result back to the client and gracefully closes connection.
 
-### Question 2: Employee Salary Revision
-- **2a (Map):** Revises salaries under ₹40,000 with a 10% increment (`e[1] * 1.10`).
-- **2b (Filter):** Isolates employees qualifying for the increment (`e[1] < 40000.0`).
-- **2c (Reduce):** Accumulates post-revision payroll expenditure.
-- **2d (Functional Suitability):** Functional programming enforces data immutability and isolates state transitions. In financial and payroll processing, this guarantees auditability, eliminates concurrency race conditions during parallel payroll batch processing, and ensures original historical records cannot be corrupted by downstream operations.
+---
 
-### Question 3: E-Commerce Festival Discount
-- **3a (Pure Function):** `calculate_discounted_price(price)` calculates `price * 0.80` if `price > 1000` else returns original price without external state dependencies.
-- **3b & 3c (Map & Filter):** Applies discount across catalog items and filters qualifying products.
-- **3d (Immutability):** Pure functions are side-effect-free: they read input values and return freshly constructed data structures rather than mutating objects in-place. Consequently, the original catalog remains strictly unchanged, allowing other services (e.g., inventory, tax auditing) to access raw baseline figures safely.
+### Question 2: Weather Monitoring Station (UDP Client–Server & Justification)
+- **Problem Statement:** Multiple environmental sensors stream temperature and humidity telemetry to a central monitoring station using UDP.
+- **Suitability Justification of UDP over TCP:**
+  1. **Minimal Header Overhead:**
+     - UDP features a compact 8-byte header compared to TCP's 20–60 byte header.
+     - For periodic micro-telemetry payloads (20–40 bytes), UDP reduces protocol overhead by over 60%, drastically conserving network bandwidth across dense IoT sensor networks.
+  2. **Connectionless & Energy Efficiency:**
+     - UDP eliminates connection setup (`SYN`/`ACK`) and teardown handshakes.
+     - Battery-powered IoT sensors can wake from deep sleep, dispatch a single datagram, and return to low-power sleep within milliseconds, extending field battery lifetimes.
+  3. **Real-Time Freshness & Loss Tolerance:**
+     - In periodic environmental monitoring (e.g. readings every 1–5 seconds), an occasional dropped packet is harmless because the subsequent datagram delivers the latest state.
+     - TCP's mandatory acknowledgement and retransmission causes head-of-line blocking, needlessly transmitting outdated temperature data.
+  4. **Multicast and Broadcast Capability:**
+     - UDP natively supports broadcasting datagrams to multiple dashboard endpoints simultaneously without maintaining server-side connection state.
 
-### Question 4: Smart Electricity Meter
-- **4a (Filter):** Isolates days where consumption strictly exceeds 10 units.
-- **4b (Map):** Multiplies daily units by the ₹6/unit tariff.
-- **4c (Reduce):** Sums total household monthly consumption.
-- **4d (Pure Billing Function):** `calculate_bill_pure(readings, rate)` takes raw unit inputs and returns the total amount without modifying the original consumption list.
+---
 
-### Question 5: University Course Registration (Logic Programming)
-- **5a (Facts):**
-  ```prolog
-  result(arun, pass, pass).
-  result(bala, pass, fail).
-  result(charan, pass, pass).
-  result(divya, fail, pass).
-  ```
-- **5b (Rule):**
-  ```prolog
-  eligible_for_advanced(Student) :-
-      result(Student, pass, pass).
-  ```
-- **5c (Query):**
-  ```prolog
-  ?- eligible_for_advanced(Student).
-  % Output: Student = arun ; Student = charan.
-  ```
+### Question 3: Manufacturing Production Cost Algebra (SymPy)
+- **Problem Statement:** Simplify mathematical expressions for production cost modeling, expand/factorize polynomials, simplify rational cost functions, and solve quadratic cost equations for production quantities.
+- **Algebraic Derivations:**
+  - **Expansion:** Factored cost function $(2q + 15)(q + 40)$ expands to:
+    $$C(q) = 2q^2 + 95q + 600$$
+  - **Factorization:** Unfactored cost expression $3q^2 + 18q + 24$ factors to:
+    $$P(q) = 3(q + 2)(q + 4)$$
+  - **Rational Simplification:**
+    $$R(q) = \frac{2q^3 + 10q^2 + 12q}{2q^2 + 4q} = \frac{2q(q + 2)(q + 3)}{2q(q + 2)} = q + 3$$
+  - **Quadratic Solution:**
+    $$2q^2 + 30q - 1400 = 0 \iff q^2 + 15q - 700 = 0 \iff (q - 20)(q + 35) = 0$$
+    Mathematical roots: $q \in \{20, -35\}$.  
+    Since physical production quantity cannot be negative ($q \ge 0$), the optimal output quantity is **$q = 20$ units**.
 
-### Question 6: Organization Promotion Eligibility (Logic Programming)
-- **6a (Facts):**
-  ```prolog
-  employee(ravi, 6, completed, 5).
-  employee(priya, 3, completed, 4).
-  employee(kumar, 8, not_completed, 5).
-  employee(meena, 7, completed, 4).
-  ```
-- **6b (Rule):**
-  ```prolog
-  eligible_for_promotion(Emp) :-
-      employee(Emp, Exp, completed, Rating),
-      Exp >= 5,
-      Rating >= 4.
-  ```
-- **6c (Query):**
-  ```prolog
-  ?- eligible_for_promotion(Emp).
-  % Output: Emp = ravi ; Emp = meena.
-  ```
+---
 
-### Question 7: Shopping Mall Parking Allocation System (Logic Programming)
-- **7a (Facts):**
-  ```prolog
-  parking_slot(s1, car, available).
-  parking_slot(s2, bike, occupied).
-  parking_slot(s3, car, available).
-  parking_slot(s4, bike, available).
-  parking_slot(s5, car, occupied).
-  ```
-- **7b (Rule):**
-  ```prolog
-  available_slot(Slot, VehicleType) :-
-      parking_slot(Slot, VehicleType, available).
-  ```
-- **7c (Query):**
-  ```prolog
-  ?- available_slot(Slot, car).
-  % Output: Slot = s1 ; Slot = s3.
-  ```
+### Question 4: Automobile Motion Analysis (SymPy Calculus)
+- **Displacement Function:**
+  $$s(t) = t^3 - 6t^2 + 9t + 5$$
+- **Velocity Function:** First derivative with respect to time $t$:
+  $$v(t) = \frac{ds}{dt} = 3t^2 - 12t + 9$$
+- **Acceleration Function:** Second derivative with respect to time $t$:
+  $$a(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2} = 6t - 12$$
+- **Momentary Rest Times ($v(t) = 0$):**
+  $$3t^2 - 12t + 9 = 0 \implies 3(t^2 - 4t + 3) = 0 \implies (t - 1)(t - 3) = 0$$
+  Vehicle is at rest at **$t = 1\text{ second}$** and **$t = 3\text{ seconds}$**.
+  - At $t = 1\text{ s}$: $s(1) = 9\text{ m}$, $a(1) = -6\text{ m/s}^2$ (decelerating)
+  - At $t = 3\text{ s}$: $s(3) = 5\text{ m}$, $a(3) = +6\text{ m/s}^2$ (accelerating forward)
+- **Definite Integration over Interval $[0, 5]$ seconds:**
+  $$\Delta s = \int_{0}^{5} (3t^2 - 12t + 9) \, dt = \left[ t^3 - 6t^2 + 9t \right]_0^5 = 125 - 150 + 45 = 20\text{ meters}$$
+  Analytical check: $s(5) - s(0) = 25 - 5 = 20\text{ meters}$.
+
+---
+
+### Question 5: Digital Security Binary Access Code Validator (DFA)
+- **Language:** All binary strings over $\Sigma = \{0, 1\}$ terminating in `"01"`.
+- **Formal 5-Tuple Specification:**
+  - $Q = \{q_0, q_1, q_2\}$
+  - $\Sigma = \{0, 1\}$
+  - Initial State: $q_0$
+  - Accept State: $F = \{q_2\}$
+  - Transition Function $\delta$:
+- **State Transition Table:**
+
+| Current State | Input '0' | Input '1' | State Interpretation |
+| :---: | :---: | :---: | :--- |
+| $\rightarrow q_0$ | $q_1$ | $q_0$ | Initial state / Suffix not matching |
+| $q_1$ | $q_1$ | $q_2$ | Last symbol observed is '0' |
+| $*q_2$ | $q_1$ | $q_0$ | **Accept State**: Last two symbols are "01" |
+
+---
+
+### Question 6: Substring Pattern Recognizer (NFA)
+- **Language:** All strings over $\Sigma = \{a, b\}$ containing the substring `"ab"`.
+- **Formal 5-Tuple Specification:**
+  - $Q = \{q_0, q_1, q_2\}$
+  - $\Sigma = \{a, b\}$
+  - Initial State: $q_0$
+  - Accept State: $F = \{q_2\}$
+  - Transition Function $\delta$:
+- **State Transition Table:**
+
+| Current State | Input 'a' | Input 'b' | State Interpretation |
+| :---: | :---: | :---: | :--- |
+| $\rightarrow q_0$ | $\{q_0, q_1\}$ | $\{q_0\}$ | Scanning prefix non-deterministically |
+| $q_1$ | $\emptyset$ | $\{q_2\}$ | Matched 'a', transitioning on 'b' |
+| $*q_2$ | $\{q_2\}$ | $\{q_2\}$ | **Accept State**: Substring "ab" detected, absorbing loop |
+
+---
